@@ -1,0 +1,14 @@
+output = "db/models"
+wipe = true
+no-tests = true
+add-enum-types = true
+pkgname = "dbmodels"
+add-global-variants = true
+
+[psql]
+dbname = "postgres"
+host = "localhost"
+port = 2345
+user = "postgres"
+pass = "postgres"
+sslmode = "disable"

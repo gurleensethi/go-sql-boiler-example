@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  postgres:
+    container_name: sql_boiler_postgres
+    image: postgres:14
+    ports:
+      - 2345:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command:
+      - "postgres"
+      - "-c"
+      - "log_statement=all"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
