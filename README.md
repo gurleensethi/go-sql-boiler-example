@@ -6,6 +6,6 @@
 
 # go-sql-boiler-example
 
-Repository for the article [SQL in Go with SQLBoiler](https://thedevelopercafe.com/articles/database-migrations-in-go-using-migrate-package-5735cf056231) demonstrating the use of [SQLBoiler](https://github.com/volatiletech/sqlboiler) package.
+Repository for the article [SQL in Go with SQLBoiler](https://thedevelopercafe.com/articles/sql-in-go-with-sqlboiler-ac8efc4c5cb8) demonstrating the use of [SQLBoiler](https://github.com/volatiletech/sqlboiler) package.
 
-Article 👉 [SQL in Go with SQLBoiler](https://thedevelopercafe.com/articles/database-migrations-in-go-using-migrate-package-5735cf056231).
+Article 👉 [SQL in Go with SQLBoiler](https://thedevelopercafe.com/articles/sql-in-go-with-sqlboiler-ac8efc4c5cb8).
