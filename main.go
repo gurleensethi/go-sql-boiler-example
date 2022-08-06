@@ -22,7 +22,7 @@ func main() {
 	author := createAuthor(ctx)
 	createArticle(ctx, author)
 	createArticle(ctx, author)
-	selectAuthorWithArticle(ctx, author.ID)
+	selectAuthorWithArticleJoin(ctx, author.ID)
 }
 
 func connectDB() *sql.DB {
@@ -81,7 +81,10 @@ func selectAuthorWithArticle(ctx context.Context, authorID int) {
 }
 
 func selectAuthorWithArticleEager(ctx context.Context, authorID int) {
-	author, err := dbmodels.Authors(dbmodels.AuthorWhere.ID.EQ(authorID), qm.Load(dbmodels.AuthorRels.Articles)).OneG(ctx)
+	author, err := dbmodels.Authors(
+		dbmodels.AuthorWhere.ID.EQ(authorID),
+		qm.Load(dbmodels.AuthorRels.Articles),
+	).OneG(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -101,12 +104,10 @@ func selectAuthorWithArticleJoin(ctx context.Context, authorID int) {
 
 	authorAndArticles := make([]AuthorAndArticle, 0)
 
-	fmt.Sprintf("%s on %s = %s", dbmodels.TableNames.Article, dbmodels.ArticleTableColumns.ID, dbmodels.AuthorTableColumns.ID)
-
 	err := dbmodels.NewQuery(
 		qm.Select("*"),
 		qm.From(dbmodels.TableNames.Author),
-		qm.InnerJoin("articles on articles.author_id = author.id"),
+		qm.InnerJoin("article on article.author_id = author.id"),
 		dbmodels.AuthorWhere.ID.EQ(authorID),
 	).BindG(ctx, &authorAndArticles)
 	if err != nil {
